@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Combined Timetable and Attendance Tracker</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+    <!-- Timetable Section -->
+    <div id="timetable">
+        <style>
+            .a {
+                background-color: lavender;
+                text-align: center;
+                font-family:serif;
+                font-style: italic;
+                font-size: 20px;
+            }
+            .t {
+                background-color:teal;
+                color:blanchedalmond;
+                text-align: center;
+                font-family:serif;
+                font-style: italic;
+                font-size: 25px;
+    
+            }
+        </style>
+        <img src = "https://www.careerindia.com/college-photos/520x380/13982/vishnu-dental-college-vdc_1658395558.png">
+
+        <table border="n">
+            <tr>
+                <th colspan = "9" class = "t">3rd BTech AIML(Time-Table)</th>
+            </tr>
+            <tr class = "a">
+                <th>Period</th>
+                <th>1</th>
+                <th>2</th>
+                <th>3</th>
+                <th>4</th>
+                <th>5</th>
+                <th>6</th>
+                <th>7</th>
+            </tr>
+            <tr class = "text-center">
+                <th>Day</th>
+                <th>8:50-9:40</th>
+                <th>9:40-10:30</th>
+                <th>10:50-11:40</th>
+                <th>11:40-12:30</th>
+                <th>1:10-2:00</th>
+                <th>2:00-2:50</th>
+                <th>2:50-3:40</th>
+            </tr>
+            <tr>
+                <th class = "text-center">MON</th>
+                <th><button class="btn btn-link" onclick="openAttendance('SS')">SS</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('CN')">CN</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('TOC')">TOC</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('SPM')">SPM</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('TOC')">TOC</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('SPM')">SPM</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('MLP')">MLP</button></th>
+            </tr>
+            <tr>
+                <th class = "text-center">TUE</th>
+                <th><button class="btn btn-link" onclick="openAttendance('MLP')">MLP</button></th>
+                <th colspan = "3"><button class="btn btn-link" onclick="openAttendance('CP LAB')">CP LAB</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('SS')">SS</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('MLP')">MLP</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('CN')">CN</button></th>
+            </tr>
+            <tr>
+                <th class = "text-center">WED</th>
+                <th><button class="btn btn-link" onclick="openAttendance('SPM')">SPM</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('TOC')">TOC</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('PE')">PE</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('CN')">CN</button></th>
+                <th colspan = "3"><button class="btn btn-link" onclick="openAttendance('Internship/Project')">Internship/Project</button></th>
+            </tr>
+            <tr>
+                <th class = "text-center">THU</th>
+                <th><button class="btn btn-link" onclick="openAttendance('PE')">PE</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('MLP')">MLP</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('SS')">SS</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('MLP')">MLP</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('SPM')">SPM</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('CN')">CN</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('TOC')">TOC</button></th>
+            </tr>
+            <tr>
+                <th class = "text-center">FRI</th>
+                <th colspan="3"><button class="btn btn-link" onclick="openAttendance('NLP LAB')">NLP LAB</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('GATE/LIB')">GATE/LIB</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('MLP')">MLP</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('CN')">CN</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('SPM')">SPM</button></th>
+            </tr>
+            <tr>
+                <th class = "text-center">SAT</th>
+                <th colspan = "2"><button class="btn btn-link" onclick="openAttendance('TOC')">TOC</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('SS')">SS</button></th>
+                <th><button class="btn btn-link" onclick="openAttendance('COUNSELLING')">COUNSELLING</button></th>
+                <th colspan = "3"><button class="btn btn-link" onclick="openAttendance('MLP LAB')">MLP LAB</button></th>
+            </tr>
+        </table>
+    </div>
+
+    <!-- Attendance Tracker Section -->
+    <div id="attendance" style="display: none;">
+        <h1 class="text-center col-md-6">Attendance Tracker</h1>
+        <h3 class = "text-center">Attendance for <span id="selectedSubject"></span></h3>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="row d-flex justify-content-center mt-3" id="checkboxRow">
+                        <!-- Dynamically generated buttons will be inserted here -->
+                    </div>
+                    <div class = "d-flex justify-content-center mt-3">
+                        <button class="btn btn-primary mt-3" onclick="submitAttendance()">Submit</button>
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-md-6">
+                    <h5>Presenties</h5>
+                    <textarea id="presenties" class="form-control" rows="1"></textarea>
+                    <button class="btn btn-secondary mt-2" onclick="copyToClipboard('presenties')">Copy Presenties</button>
+                </div>
+                <div class="col-md-6">
+                    <h5>Absenties</h5>
+                    <textarea id="absenties" class="form-control" rows="1"></textarea>
+                    <button class="btn btn-secondary mt-2" onclick="copyToClipboard('absenties')">Copy Absenties</button>
+                </div>
+            </div>
+        </div>
+        
+        <style>
+            h3{
+                padding:10px;
+                color: brown;
+            }
+            /* Common styles for buttons */
+            .attendance-button {
+                width: 40px;
+                height: 40px;
+                margin: 2px;
+                color: white;
+                font-size: 16px;
+                cursor: pointer;
+            }
+        
+            /* Original color */
+            .attendance-button:not(.active) {
+                background-color: #50aea5; /* Blue color */
+            }
+        
+            /* Active color */
+            .attendance-button.active {
+                background-color: red;
+            }
+        
+            /* Responsive layout adjustments */
+            @media (max-width: 700px) {
+                /* Styles for screens up to 576px width (phones) */
+                .container {
+                    padding: 15px;
+                }
+                .col-md-6 {
+                    margin-top: 10px;
+                }
+            }
+        
+            /* Adjusted styles for LE buttons */
+            .attendance-button.le-button {
+                width: 60px; /* Adjust the width as needed */
+                height: 40px; /* Adjust the height as needed */
+            }
+        </style>
+    </div>
+
+    <script>
+        let selectedSubject; 
+        function openAttendance(subject) {
+            selectedSubject = subject; // Add this line to assign the selected subject
+            document.getElementById('timetable').style.display = 'none';
+            document.getElementById('attendance').style.display = 'block';
+            document.getElementById('selectedSubject').textContent = subject;
+        }
+
+        const checkboxes = [];
+        const checkboxRow = document.getElementById('checkboxRow');
+        const presentiesTextarea = document.getElementById('presenties');
+        const absentiesTextarea = document.getElementById('absenties');
+        const submitButton = document.querySelector('button');
+
+        for (let i = 1; i <= 73; i++) {
+            if (i <= 65) {
+                checkboxes.push(i);
+            } else {
+                checkboxes.push(`LE-${i - 65}`);
+            }
+        }
+
+
+        checkboxes.forEach(checkbox => {
+            const checkboxButton = document.createElement('button');
+            checkboxButton.className = 'btn btn-primary attendance-button';
+            
+            // Check if checkbox is a string with "LE-" prefix
+            if (typeof checkbox === 'string' && checkbox.startsWith("LE-")) {
+                checkboxButton.classList.add('le-button');
+            }
+            
+            checkboxButton.innerText = checkbox;
+            checkboxButton.setAttribute('data-id', checkbox);
+            checkboxButton.onclick = function() {
+                toggleAttendance(checkboxButton);
+            };
+            checkboxRow.appendChild(checkboxButton);
+        });
+
+        function toggleAttendance(button) {
+            button.classList.toggle('active');
+        }
+
+        function submitAttendance() {
+            const now = new Date();
+            const formattedDate = now.toLocaleString();
+            const sectionName = "AIML"; // Add the section name here
+
+            const presenties = [];
+            const absenties = [];
+
+            checkboxes.forEach(checkbox => {
+                const button = document.querySelector(`.attendance-button[data-id="${checkbox}"]`);
+                if (button.classList.contains('active')) {
+                    absenties.push(button.textContent);
+                } else {
+                    presenties.push(button.textContent);
+                }
+            });
+
+            presentiesTextarea.value = `${sectionName} ${selectedSubject} Presenties (${formattedDate}): ${presenties.join(', ')}`;
+            absentiesTextarea.value = `${sectionName} ${selectedSubject} Absenties (${formattedDate}): ${absenties.join(', ')}`;
+        }
+        function copyToClipboard(id) {
+            const textarea = document.getElementById(id);
+            textarea.select();
+            document.execCommand('copy');
+            alert(`${id.charAt(0).toUpperCase() + id.slice(1)} copied to clipboard.`);
+        }
+
+            // Rest of your JavaScript code...
+    </script>
+</body>
+</html>
